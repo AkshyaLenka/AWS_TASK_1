@@ -1,0 +1,57 @@
+AWS Task-1
+
+🔅 Create a key pair 
+
+🔅 Create a security group 
+
+🔅 Launch an instance using the above created key pair and security group.
+
+🔅 Create an EBS volume of 1 GB.
+
+🔅 The final step is to attach the above created EBS volume to the instance you created in the previous steps.
+
+So this task is all about familiarizing with the AWS CLI which is a nice tool for executing AWS tasks.
+
+Note:
+
+1. All the commands are executed using command prompt.
+
+2. First log in to your aws account by using ‘aws configure’ command.
+
+Here are the steps for completing these tasks:
+
+1. Create a Key pair
+
+command: aws ec2 create-key-pair --key-name key01
+
+Here ‘key01’ is the key name that we want to create.
+
+2. Create a security group 
+
+Command: aws ec2 create-security-group --group-name secure1 --description "My security"
+
+Here ‘secure1’ is the name of my new security group, you can give other names too.
+
+3.  Launch an instance using the above created key pair and security group.
+
+Command: aws ec2 run-instances --image-id ami-0e306788ff2473ccb --instance-type t2.micro --count 1 --subnet-id subnet-50737a38 --security-group-ids sg-03c83b778c27acbb6 --key-name key01
+
+We can get the ‘security-group-ids’  in the cmd screen after creating the respective security group. Subnet-id refers to the availability zone.
+
+Our instance is successfully Launched……
+
+4. Create an EBS volume of 1 GB.
+
+Command: aws ec2 create-volume --availability-zone ap-south-1a --size 1
+
+Here size should be in GiB.
+
+So , our new volume is created.
+
+5. The final step is to attach the above created EBS volume to the instance you created in the previous steps.
+
+Command: aws ec2 attach-volume --device /dev/sdf --instance-id i-07820b2a99739ead9 --volume-id vol-01638a8549ca2b4ec
+
+We can get the ‘volume-id’ in the cmd output after creation of the volume.
+
+Finally we have attached the newly created volume to our instance.
